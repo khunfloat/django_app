@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1 align="center">Package Registeration</h1>
+<br>
+{% if messages %}
+<div class="alert alert-danger" role="alert">
+    {% for message in messages %}
+    {{message}}
+    {% endfor %}
+</div>
+{% endif %}
+
+<form action="/addregisterpackageqr" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="alert alert-primary" role="alert">
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Scan QRcode</label>
+            <input class="form-control" type="file" name="file">
+        </div>
+        <a href="/registerpackage">Use QRcode ID instead</a>
+    </div>
+
+    <button type="submit" class="btn btn-primary mb-3">Scan</button>
+
+</form>
+
+{% else %}
+
+<h1 align="center">Log In</h1>
+
+<form action="/addlogin" method="POST">
+    {% csrf_token %}
+    {% if messages %}
+    <div class="alert alert-danger" role="alert">
+        {% for message in messages %}
+        {{message}}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="form-group">
+        <label for="">Username</label>
+        <input type="text" class="form-control" name="username">
+    </div>
+    <div class="form-group">
+        <label for="">Password</label>
+        <input type="password" class="form-control" name="password">
+    </div>
+    <input type="submit" value="Log In" class="btn btn-primary">
+</form>
+
+{% endif %}
+
+{% endblock %}

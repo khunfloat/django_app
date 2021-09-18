@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h1 align="center">Generate ID</h1>
+<br>
+<form action="/addgenerate" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="">UID</label>
+        <input type="text" class="form-control" name="uid" value={{uid}}>
+    </div>
+    <input type="submit" value="Generate" class="btn btn-primary">
+</form>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h1>Registered QRcode</h1>
+<br>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">QRcode ID</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for code in registeredlist %}
+      <tr>
+        <th scope="row">{{code}}</th>
+        <th>registered</th>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

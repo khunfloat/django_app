@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 align="center">Tracking Package</h1>
+<br>
+{% if messages %}
+<div class="alert alert-danger" role="alert">
+    {% for message in messages %}
+    {{message}}
+    {% endfor %}
+</div>
+{% endif %}
+
+<form action="/addtrack" method="POST">
+    {% csrf_token %}
+    <div class="alert alert-primary" role="alert">
+        <div class="mb-3">
+            <label for="" class="form-label">QRcode ID</label>
+            <input type="text" class="form-control" name="qrcode_id" value="{{qrcode_id}}" required>
+        </div>
+        <a href="/trackqr">Scan QRcode instead</a>
+    </div>
+
+    <input type="submit" value="Track" class="btn btn-primary">
+
+</form>
+{% endblock %}

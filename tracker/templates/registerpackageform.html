@@ -1,0 +1,120 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1 align="center">Package Registeration</h1>
+<br>
+{% if messages %}
+<div class="alert alert-danger" role="alert">
+    {% for message in messages %}
+    {{message}}
+    {% endfor %}
+</div>
+{% endif %}
+
+<form action="/addregisterpackage" method="POST">
+    {% csrf_token %}
+    <div class="alert alert-primary" role="alert">
+        <div class="mb-3">
+            <label for="" class="form-label">QRcode ID :</label>
+            <input type="text" class="form-control" name="qrcode_id" value="{{qrcode_id}}" required>
+        </div>
+        <a href="/registerpackageqr">Scan QRcode instead</a>
+    </div>
+
+    <div class="alert alert-secondary" role="alert">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="" class="form-label">Firstname (sender)</label>
+                <input type="text" class="form-control" name="sender_firstname" required>
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">Lastname</label>
+                <input type="text" class="form-control" name="sender_lastname" required> 
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="" class="form-label">Address</label>
+            <input type="text" class="form-control" name="sender_add" placeholder="Plot number, Village, Road" required>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">District</label>
+                <input type="text" class="form-control" name="sender_dis" required>
+            </div>
+            <div class="col-md-4">
+                <label for="inputCity" class="form-label">Province</label>
+                <input type="text" class="form-control" name="sender_pro" required> 
+            </div>
+
+            <div class="col-md-2">
+                <label for="inputZip" class="form-label">Postal Code</label>
+                <input type="text" class="form-control" name="sender_code" required>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-secondary" role="alert">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="" class="form-label">Firstname (recipient)</label>
+                <input type="text" class="form-control" name="recip_firstname" required>
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">Lastname</label>
+                <input type="text" class="form-control" name="recip_lastname" required>
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="" class="form-label">Address</label>
+            <input type="text" class="form-control" name="recip_add" placeholder="Plot number, Village, Road" required>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">District</label>
+                <input type="text" class="form-control" name="recip_dis" required>
+            </div>
+            <div class="col-md-4">
+                <label for="inputCity" class="form-label">Province</label>
+                <input type="text" class="form-control" name="recip_pro" required> 
+            </div>
+
+            <div class="col-md-2">
+                <label for="inputZip" class="form-label">Postal Code</label>
+                <input type="text" class="form-control" name="recip_code" required>
+            </div>
+        </div>
+    </div>
+
+    <input type="submit" value="Register" class="btn btn-primary">
+
+</form>
+
+{% else %}
+
+<h1 align="center">Log In</h1>
+
+<form action="/addlogin" method="POST">
+    {% csrf_token %}
+    {% if messages %}
+    <div class="alert alert-danger" role="alert">
+        {% for message in messages %}
+        {{message}}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="form-group">
+        <label for="">Username</label>
+        <input type="text" class="form-control" name="username">
+    </div>
+    <div class="form-group">
+        <label for="">Password</label>
+        <input type="password" class="form-control" name="password">
+    </div>
+    <input type="submit" value="Log In" class="btn btn-primary">
+</form>
+
+{% endif %}
+
+{% endblock %}

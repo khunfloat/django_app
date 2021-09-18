@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h1 align="center">Registeration</h1>
+<br>
+<form class="row g-4" action="/addregister" method="POST">
+    {% csrf_token %}
+
+    {% if messages %}
+        <div class="alert alert-danger" role="alert">
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="col-md-6">
+        <label for="validationDefault01" class="form-label">First name</label>
+        <input type="text" class="form-control" name="firstname" value="" required>
+    </div>
+    <div class="col-md-6">
+        <label for="validationDefault02" class="form-label">Last name</label>
+        <input type="text" class="form-control" name="lastname" value="" required>
+    </div>
+    <div class="col-md-4">
+        <label for="validationDefaultUsername" class="form-label">Username</label>
+        <div class="input-group">
+            <span class="input-group-text" id="inputGroupPrepend2">@</span>
+            <input type="text" class="form-control" name="username" aria-describedby="inputGroupPrepend2" required>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <label for="validationDefault03" class="form-label">E-mail</label>
+        <input type="email" class="form-control" name="email" required>
+    </div>
+    <div class="col-md-6">
+        <label for="validationDefault03" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" required>
+    </div>
+    <div class="col-md-6">
+        <label for="validationDefault03" class="form-label">Re-enter Password</label>
+        <input type="password" class="form-control" name="repassword" required>
+    </div>
+
+
+    <div class="col-10">
+        <button class="btn btn-primary" type="submit">Register</button>
+    </div>
+</form>
+    <a href="/login">Log in</a>
+
+{% endblock %}

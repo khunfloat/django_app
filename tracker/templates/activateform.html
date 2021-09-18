@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+{% if user.is_authenticated %}
+<h1 align="center">QRcode Activation</h1>
+<br>
+{% if messages %}
+<div class="alert alert-danger" role="alert">
+    {% for message in messages %}
+    {{message}}
+    {% endfor %}
+</div>
+{% endif %}
+
+<form action="/addactivate" method="POST">
+    {% csrf_token %}
+    <div class="alert alert-primary" role="alert">
+        <div class="mb-3">
+            <label for="" class="form-label">QRcode ID</label>
+            <input type="text" class="form-control" name="qrcode_id" value="{{qrcode_id}}" required>
+            <a href="/activateqr">Scan QRcode instead</a>
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Activation name</label>
+            <input type="text" class="form-control" name="activation_name" value="{{user.username}}" required>
+        </div>
+    </div>
+
+    <input type="submit" value="Activate" class="btn btn-primary">
+
+</form>
+{% else %}
+
+<h1 align="center">Log In</h1>
+
+<form action="/addlogin" method="POST">
+    {% csrf_token %}
+    {% if messages %}
+    <div class="alert alert-danger" role="alert">
+        {% for message in messages %}
+        {{message}}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="form-group">
+        <label for="">Username</label>
+        <input type="text" class="form-control" name="username">
+    </div>
+    <div class="form-group">
+        <label for="">Password</label>
+        <input type="password" class="form-control" name="password">
+    </div>
+    <input type="submit" value="Log In" class="btn btn-primary">
+</form>
+
+{% endif %}
+{% endblock %}

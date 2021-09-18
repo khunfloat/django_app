@@ -1,0 +1,98 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h1 align="center">Tracking Information</h1>
+<br>
+<h2>Package ID : {{qrcode_id}}</h2>
+<div class="alert alert-secondary" role="alert">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="col">Sender Name</th>
+                        <th scope="col">{{sender_firstname}} {{sender_lastname}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Sender Address</th>
+                        <th scope="col">{{sender_add}} {{sender_dis}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Sender Province</th>
+                        <th scope="col">{{sender_pro}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Sender Postal Code</th>
+                        <th scope="col">{{sender_code}}</th>
+                    </tr>
+                </tbody>
+
+                  
+                
+            </table>
+        </div>
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="col">Recipient Name</th>
+                        <th scope="col">{{recip_firstname}} {{recip_lastname}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Recipient Address</th>
+                        <th scope="col">{{recip_add}} {{recip_dis}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Recipient Province</th>
+                        <th scope="col">{{recip_pro}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Recipient Postal Code</th>
+                        <th scope="col">{{recip_code}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% if height %}
+<div class="alert alert-secondary" role="alert">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="col">Package height</th>
+                        <th scope="col">{{height}} cm</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Package width</th>
+                        <th scope="col">{{width}} cm</th>
+                    </tr>
+                </tbody>
+
+                  
+                
+            </table>
+        </div>
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="col">Package depth</th>
+                        <th scope="col">{{depth}} cm</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Package weight</th>
+                        <th scope="col">{{weight}} kg</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+{% endblock %}
